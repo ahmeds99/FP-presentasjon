@@ -1,5 +1,6 @@
 package example.com.plugins
 
+import arrow.core.flatMap
 import example.com.stationService
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
@@ -19,12 +20,11 @@ fun Application.configureRouting() {
         get("/station/{id}") {
             val id = call.parameters["id"]
             if (id != null) {
-                val station = stationService.getStationNullable(id)
-                if (station != null) {
-                    call.respond(station)
-                } else {
-                    call.respond(HttpStatusCode.NotFound, "Station not found!")
-                }
+                val station = stationService.getStationEvenEvenBetter(id)
+                station.fold(
+                    { error -> call.respond(HttpStatusCode.BadRequest, error.message) },
+                    { s -> call.respond(s) }
+                )
             }
         }
     }
