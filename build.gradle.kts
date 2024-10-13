@@ -33,6 +33,11 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-client-cio:$ktor_version")
     implementation("io.ktor:ktor-client-cio-jvm:2.3.12")
+
+    // Arrow deps
+    implementation("io.arrow-kt:arrow-core:1.2.4")
+    implementation("io.arrow-kt:arrow-fx-coroutines:1.2.4")
+
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 }
