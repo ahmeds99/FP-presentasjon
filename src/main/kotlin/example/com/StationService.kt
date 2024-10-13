@@ -105,12 +105,9 @@ class StationService {
         return stationsResponse.fold(
             { error -> error.left() },
             { allStations ->
-                val station = allStations.find { station ->
-                    station.id == stationId
-                }
+                val station = allStations.find { station -> station.id == stationId }
 
-                if (station == null)
-                    StationNotFound(stationId).left()
+                if (station == null) StationNotFound(stationId).left()
                 else station.right()
             }
         )
