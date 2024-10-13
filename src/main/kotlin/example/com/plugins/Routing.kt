@@ -2,6 +2,7 @@ package example.com.plugins
 
 import arrow.core.flatMap
 import example.com.stationService
+import example.com.testEgenEither
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -26,6 +27,10 @@ fun Application.configureRouting() {
                     { s -> call.respond(s) }
                 )
             }
+        }
+
+        get("/testEither") {
+            testEgenEither()
         }
     }
 }
