@@ -103,7 +103,7 @@ class StationService {
         val stationsResponse = getStationsBetter()
 
         return stationsResponse.fold(
-            { error -> error.left() },
+            { domainError -> domainError.left() },
             { allStations ->
                 val station = allStations.find { station -> station.id == stationId }
 
