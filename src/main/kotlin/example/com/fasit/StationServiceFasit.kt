@@ -1,6 +1,16 @@
 package example.com.fasit
 
-/*
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.right
+import example.com.client
+import example.com.models.DomainError
+import example.com.models.DomainError.*
+import io.ktor.client.call.body
+import io.ktor.client.request.get
+import io.ktor.http.isSuccess
+
+
 class StationService {
     val stationInfoURL = "https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json"
 
@@ -60,6 +70,7 @@ class StationService {
             return null
         }
     }
+
 
     // Eksempel på noe bedre enn try-catch, men fortsatt nullable
     suspend fun getStationBetter(stationId: String): Station? {
@@ -144,5 +155,3 @@ class StationService {
         return stations
     }
 }
-
- */

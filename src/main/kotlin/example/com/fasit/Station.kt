@@ -26,3 +26,15 @@ data class Station(
     val address: Address,
     val capacity: Capacity,
 )
+
+
+@Serializable
+data class StationInfoResponse(
+    @SerialName("last_updated") val lastUpdated: Long,
+    val data: Data
+)
+
+@Serializable
+data class Data(
+    val stations: List<Station>
+)
