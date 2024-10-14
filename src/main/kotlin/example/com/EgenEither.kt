@@ -26,7 +26,7 @@ fun testEgenEither() {
     val domainError = EgenEither.Left(DomainError.EmptyStationInput())
 
     if (domainError.isLeft())
-        println("Vi fikk en feil.. ${domainError.value.message}")
+        println("Vi fikk (korrekt) en feil.. ${domainError.value.message}")
 
     if (testString.isRight())
         println(testString.value)
