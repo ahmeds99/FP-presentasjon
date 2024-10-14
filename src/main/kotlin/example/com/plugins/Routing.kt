@@ -32,5 +32,9 @@ fun Application.configureRouting() {
         get("/testEither") {
             testEgenEither()
         }
+
+        get("/new-stations") {
+            call.respond(stationService.addNewStations())
+        }
     }
 }

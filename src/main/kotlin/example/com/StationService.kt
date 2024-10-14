@@ -112,4 +112,46 @@ class StationService {
             }
         )
     }
+
+    // Merk: named arguments kan til dels hjelpe oss her, men garanterer ingen typesikkerhet
+    fun addNewStations(): List<Station> {
+        val stations = listOf(
+            Station(
+                "900",
+                "Forskningsparken Nord",
+                "Gaustadaleen 21B",
+                20
+            ),
+            Station(
+                "901",
+                "Gaustadaleen 21C",
+                "Forskningsparken Sør",
+                25
+            ),
+            Station(
+                "902",
+                "Ved Sophus Lies",
+                "Problemveien 22",
+                18
+            ),
+            Station(
+                "903",
+                "Akersgata 35",
+                "Computas hovedkontor",
+                30
+            ),
+            Station(
+                "Åråsen Stadion",
+                "904",
+                "C.J. Hansens vei 3B",
+                22
+            ),
+        )
+
+        println("Adding new stations: $stations")
+
+        // ADD NEW STATIONS TO A DB ...
+
+        return stations
+    }
 }
