@@ -14,16 +14,18 @@ fun Application.configureRouting() {
         }
 
         get("/stations") {
-            call.respond(stationService.getStations())
+            stationService.getStationsBetter().fold(
+                { error -> call.respond(error.message) }, // if left
+                { stations -> call.respond(stations) } // if right
+            )
         }
 
         get("/station/{id}") {
             val id = call.parameters["id"]
             if (id != null) {
-                val station = stationService.getStationEvenEvenBetter(id)
-                station.fold(
-                    { error -> call.respond(HttpStatusCode.BadRequest, error.message) },
-                    { s -> call.respond(s) }
+                stationService.getStationEvenEvenBetter(id).fold(
+                    { error -> call.respond(error.message) },
+                    { station -> call.respond(station) }
                 )
             }
         }
@@ -37,3 +39,10 @@ fun Application.configureRouting() {
         }
     }
 }
+
+/*
+    stationService.getStationsBetter().fold(
+                { error -> call.respond(error.message) },
+                { stations -> call.respond(stations) }
+            )
+ */

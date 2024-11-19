@@ -96,7 +96,6 @@ class StationService {
         }
     }
 
-    // Bruk som fasit hvis stuck på slutten
     suspend fun getStationEvenEvenBetter(stationId: String): Either<DomainError, Station> {
         if (stationId.isEmpty()) return Either.Left(EmptyStationInput())
 
