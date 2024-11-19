@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "2.0.20"
     id("io.ktor.plugin") version "3.0.0-rc-2"
     kotlin("plugin.serialization") version "2.0.10"
-    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
+    id("com.google.devtools.ksp") version "2.0.21-1.0.25"
 }
 
 group = "example.com"
