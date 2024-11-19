@@ -1,26 +1,43 @@
 package example.com
 
 import arrow.optics.Lens
+import arrow.optics.*
 
+@optics
 data class Restaurant(
     val navn: String,
     val adresse: Adresse
-)
+) {
+    companion object
+}
 
+@optics
 data class Adresse(
     val navn: String,
     val by: By
-)
+) {
+    companion object
+}
 
+@optics
 data class By(
     val by: String,
     val land: String
-)
+) {
+    companion object
+}
+
+val computasKantina =
+    Restaurant("Akersgata Kantine", Adresse("Akersgata 4", By("Oslo", "Norge")))
+
+val land = Restaurant.adresse.by.land.get(computasKantina)
 
 fun main() {
-    val computasKantina =
-        Restaurant("Akersgata Kantine", Adresse("Akersgata 4", By("Oslo", "Norge")))
+    println(land)
+}
 
+
+fun old() {
     computasKantina.copy(
         navn = "Tiårets kantine"
     )
@@ -47,6 +64,4 @@ fun main() {
     byLense.modify(computasKantina) {
         By("Trondheim", "Norge")
     }
-
-
 }
