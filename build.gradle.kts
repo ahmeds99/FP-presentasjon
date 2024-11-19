@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "2.0.20"
     id("io.ktor.plugin") version "3.0.0-rc-2"
     kotlin("plugin.serialization") version "2.0.10"
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
 }
 
 group = "example.com"
@@ -37,6 +38,9 @@ dependencies {
     // Arrow deps
     implementation("io.arrow-kt:arrow-core:1.2.4")
     implementation("io.arrow-kt:arrow-fx-coroutines:1.2.4")
+
+    implementation("io.arrow-kt:arrow-optics:1.2.4")
+    ksp("io.arrow-kt:arrow-optics-ksp-plugin:1.2.4")
 
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
