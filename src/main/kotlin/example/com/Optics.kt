@@ -32,8 +32,24 @@ val computasKantina =
 
 val land = Restaurant.adresse.by.land.get(computasKantina)
 
+val kantinaIRomania = Restaurant.adresse.by.set(computasKantina, By("Bucuresti", "Romania"))
+
+val modifisertAdresse = Restaurant.adresse.navn.modify(computasKantina) { navn -> navn.plus(" (7. etg)") }
+
+// For å enkelt endre by til en restaurant
+val byLense: Lens<Restaurant, String> = Restaurant.adresse compose Adresse.by compose By.by
+
+val computasKantinaBy = byLense.get(computasKantina)
+
+val nyKantineIBergen = byLense.set(computasKantina, "Bergen")
+
+
 fun main() {
     println(land)
+    println(kantinaIRomania)
+    println(modifisertAdresse)
+    println(computasKantinaBy)
+    println(nyKantineIBergen)
 }
 
 
