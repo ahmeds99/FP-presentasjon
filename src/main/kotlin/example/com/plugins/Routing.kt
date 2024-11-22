@@ -2,7 +2,6 @@ package example.com.plugins
 
 import example.com.stationService
 import example.com.testEgenEither
-import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -15,8 +14,8 @@ fun Application.configureRouting() {
 
         get("/stations") {
             stationService.getStationsBetter().fold(
-                { error -> call.respond(error.message) }, // if left
-                { stations -> call.respond(stations) } // if right
+                { error -> call.respond(error.message) },
+                { stations -> call.respond(stations) }
             )
         }
 

@@ -34,8 +34,7 @@ class StationService {
         val response = client.get(stationInfoURL)
 
         if (!response.status.isSuccess())
-            return NetworkError(response.status.value).left()
-
+            return Either.Left(NetworkError(response.status.value))
 
         val responseBody = response.body<StationInfoResponse>()
         val allStations = responseBody.data.stations
@@ -43,7 +42,7 @@ class StationService {
         if (allStations.isEmpty())
             return EmptyStationList().left()
 
-        return responseBody.data.stations.right()
+        return Either.Right(responseBody.data.stations)
     }
 
     suspend fun getStationNullable(stationId: String): Station? {
@@ -97,7 +96,7 @@ class StationService {
     }
 
     suspend fun getStationEvenEvenBetter(stationId: String): Either<DomainError, Station> {
-        if (stationId.isEmpty()) return Either.Left(EmptyStationInput())
+        if (stationId.isEmpty()) return EmptyStationInput().left()
 
         val stationsResponse = getStationsBetter()
 
@@ -106,8 +105,7 @@ class StationService {
             { allStations ->
                 val station = allStations.find { station -> station.id == stationId }
 
-                if (station == null) StationNotFound(stationId).left()
-                else station.right()
+                station?.right() ?: StationNotFound(stationId).left()
             }
         )
     }
